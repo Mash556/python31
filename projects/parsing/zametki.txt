@@ -1,0 +1,17 @@
+при создании проекта мы создаем виртуальное окружение python3 -m venv {название вирт.окруж}
+
+что бы октивировать вирт.окр  вводим след команду
+source {название вирт окр}
+
+cкачивание модулья
+pip install {название модулья}
+
+pip install -r {название }
+
+response = requests.get('https://enter.kg/computers/noutbuki_bishkek')
+# print(response.text)
+
+soup = BS(response.text, 'lxml')
+soup.find("div", class_='item')
+soup.find_all()
+soup.get()
