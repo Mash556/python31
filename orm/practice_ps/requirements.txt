@@ -1,0 +1,7 @@
+psycopg2-binary
+
+python3 -n venv venv - создает виртуальноое окружение
+
+. venv/bin/activate - активирует вирт, окружение
+
+ pip install -r requirements.txt - cкачает модуль

@@ -134,3 +134,14 @@ where price <= (
     select avg(price)
     from book)
 order by price desc;
+
+
+select author, title, amount 
+from book 
+where amount in (select amount from book group by amount having count(amount) = 1 )
+
+
+# ANY - возвращает True если в условии верно хотябы одно выражение похож на оператора OR
+# ALL - возвращает True только в том случии если все выражения верны
+select author, title, price from book where price < ANY(select min(price) from book group by author)
+
