@@ -70,7 +70,7 @@ def update_item(id_, n, d, p):
         db.commit()
         items = db.query(Item).filter_by(id=id_).first()
     return {'name': items.name, 'description': items.dascription, 'price': items.price}
-
+print(update_item(2, 'Iphone 15', '2023 year', 120000))
 
 def delete_item(id_):
     with SessionLocal() as db:
