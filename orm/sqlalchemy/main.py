@@ -1,16 +1,17 @@
-from sqlalchemy import create_engine, Column, Integer, String
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
-from pydantic_sqlalchemy import sqlalchemy_to_pydantic
-
-
-
-DATABASE_URL = 'postgresql://hello:1@localhost/product_items'
 # 'postgres://username:password@localhost/db_name'
-engine = create_engine(DATABASE_URL)
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
-Base = declarative_base()
+from sqlalchemy import create_engine, Column, Integer, String    #
+from sqlalchemy.ext.declarative import declarative_base          #
+from sqlalchemy.orm import sessionmaker                          #
+from pydantic_sqlalchemy import sqlalchemy_to_pydantic           #
+
+
+
+DATABASE_URL = 'postgresql://hello:1@localhost/product_items'    #
+engine = create_engine(DATABASE_URL)                             #
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine) # позволяет бросать запросы
+
+Base = declarative_base() # создает базовый класс
 
 class Item(Base):
     __tablename__ = 'items'
@@ -54,8 +55,8 @@ print(get_item())
 # delete - принимает айди и удаляет 
 # 
 
-def retrieve_item(id_):
-    with SessionLocal() as db:
+"""def retrieve_item(id_):
+    with SessionLocal() as db: # открывает бд
         if id_ in db.query(Item).filter_by(id=id_):
             items = db.query(Item).filter_by(id=id_).first()
         else:
@@ -70,7 +71,9 @@ def update_item(id_, n, d, p):
         db.commit()
         items = db.query(Item).filter_by(id=id_).first()
     return {'name': items.name, 'description': items.dascription, 'price': items.price}
+
 print(update_item(2, 'Iphone 15', '2023 year', 120000))
+
 
 def delete_item(id_):
     with SessionLocal() as db:
@@ -82,4 +85,56 @@ def delete_item(id_):
         else:
             return f'значение под ключом {id_} не существует'
         
-print(delete_item(5))
+print(delete_item(5))"""
+
+# first - обрабатывает запрос
+
+# def retrieve(id_:int):
+#     with SessionLocal() as db:
+#         db
+
+
+
+
+def retrieve_item(item_id:int):
+    with SessionLocal() as db:
+        db_item = db.query(Item).filter(Item.id==item_id).first()
+
+        if db_item is None:
+            return None
+        return {
+            'name':db_item.name,
+            'dascription': db_item.dascription,
+            'price': db_item.price
+        }
+print(retrieve_item(4))
+
+
+def update_item(item_id,item):
+    with SessionLocal() as db:
+        db_item = db.query(Item).filter(Item.id ==item_id).first()
+        for field,value in item.items():
+            setattr(db_item,field,value)
+        db.commit()
+        db.refresh(db_item)
+        return db_item
+
+
+def delete_item(item_id):
+    with SessionLocal() as db:
+        deleted_item = db.query(Item).filter_by(id=item_id).first()
+        if deleted_item:
+            db.delete(deleted_item)
+            db.commit()
+            return {'message': f"Item with ID {item_id} deleted successfully"}
+        else:
+            return {'message': f"Item with ID {item_id} not found"}
+
+    
+
+
+
+# REST - {"name":"item 1"}
+# SOAP
+
+# client - api - server
