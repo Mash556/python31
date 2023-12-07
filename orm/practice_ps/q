@@ -1,0 +1,17 @@
+                                    List of databases
+     Name      |  Owner   | Encoding |   Collate   |    Ctype    |   Access privileges   
+---------------+----------+----------+-------------+-------------+-----------------------
+ dump          | hello    | UTF8     | en_CA.UTF-8 | en_CA.UTF-8 | 
+ hello         | postgres | UTF8     | en_CA.UTF-8 | en_CA.UTF-8 | 
+ postgres      | postgres | UTF8     | en_CA.UTF-8 | en_CA.UTF-8 | 
+ product_items | hello    | UTF8     | en_CA.UTF-8 | en_CA.UTF-8 | 
+ shop_db       | hello    | UTF8     | en_CA.UTF-8 | en_CA.UTF-8 | 
+ task          | hello    | UTF8     | en_CA.UTF-8 | en_CA.UTF-8 | 
+ template0     | postgres | UTF8     | en_CA.UTF-8 | en_CA.UTF-8 | =c/postgres          +
+               |          |          |             |             | postgres=CTc/postgres
+ template1     | postgres | UTF8     | en_CA.UTF-8 | en_CA.UTF-8 | =c/postgres          +
+               |          |          |             |             | postgres=CTc/postgres
+ test          | hello    | UTF8     | en_CA.UTF-8 | en_CA.UTF-8 | 
+ test_postgres | hello    | UTF8     | en_CA.UTF-8 | en_CA.UTF-8 | 
+(10 rows)
+

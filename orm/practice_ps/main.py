@@ -13,12 +13,12 @@ db_params = {
 
 connection = psycopg2.connect(**db_params)
 
-# create_table = """
-# CREATE TABLE test (
-# id serial primary key,
-# name varchar(30),
-# age integer);
-# """
+create_table = """
+CREATE TABLE test (
+id serial primary key,
+name varchar(30),
+age integer);
+"""
 
 data = [
     ('Nikita', 20),
@@ -34,7 +34,7 @@ insert into test (name, age) values (%s, %s);
 """
 
 select_query = """
-select * from test
+select * from test;
 """
 update_query = """
 update test set name = %s where id = %s
@@ -48,11 +48,11 @@ delete from test where id = {a}
 
 try:
     cursor = connection.cursor()
-    cursor.execute(select_query)
-    # cursor.executemany(insert_query, data) # выполнение sql
-    # connection.commit()
-    result = cursor.fetchall() # это функция выводит данные пишем когда мы ожидаем данные
-    print(result)
+    # cursor.execute(select_query)
+    cursor.executemany(insert_query, data) # выполнение sql
+    connection.commit()
+    # result = cursor.fetchall() # это функция выводит данные пишем когда мы ожидаем данные
+    # print(result)
 finally:
     cursor.close()
     connection.close()

@@ -22,7 +22,8 @@ class Item(Base):
     
 ItemPydantic = sqlalchemy_to_pydantic(Item, exclude=['id'])
 
-#API
+# API - способ взаимодействиями
+# http - протокол 
 
 Base.metadata.create_all(bind=engine)
 db_item = ItemPydantic(name= 'item 3', dascription='bag', price=250)
@@ -112,7 +113,7 @@ print(retrieve_item(4))
 
 def update_item(item_id,item):
     with SessionLocal() as db:
-        db_item = db.query(Item).filter(Item.id ==item_id).first()
+        db_item = db.query(Item).filter(Item.id==item_id).first()
         for field,value in item.items():
             setattr(db_item,field,value)
         db.commit()
