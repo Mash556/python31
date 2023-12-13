@@ -5,11 +5,11 @@ import json # чтобы работать с json объектами
 import webbrowser # это библиотека взаимодействует с веб сайтами он открывает веб сайты
 from telebot import types # это функция создает кнопки
 import sqlite3 # для работы с базом данных
-from aiogram import Bot, Dispatcher, executor, types
+# from aiogram import Bot, Dispatcher, executor, types
 # сюда мы вставляем токен нашего бота чтобы подключиться
 # header = {'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:32.0) Gecko/20100101 Firefox/32.0',}
 bot = telebot.TeleBot('6330365444:AAES3KDt80zvJQ7PeHvJcqskpLbfnnNg2YA')
-dp = Dispatcher(bot)
+# dp = Dispatcher(bot)
 
 
 "====================LESSON 7pi============================================"
@@ -17,7 +17,7 @@ dp = Dispatcher(bot)
 
 
 
-executor.start_polling(dp)
+# executor.start_polling(dp)
 "====================LESSON 6======================================="
 # amount = 0
 # # Бот для конвертации валют
